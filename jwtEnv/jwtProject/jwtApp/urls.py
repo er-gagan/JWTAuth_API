@@ -1,13 +1,12 @@
-from django.urls import include, path
-from rest_framework import routers
-from . import views
+from .views import ApiRoot, StudentTeacherList, Student, Teacher
+from rest_framework.urlpatterns import format_suffix_patterns
+from django.urls import path
 
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('',ApiRoot.as_view(), name='root'),
+    path('all/',StudentTeacherList.as_view(), name='all'),
+    path('student/',Student.as_view(), name="student"),
+    path('teacher/',Teacher.as_view(), name="teacher"),
+    # path('<int:pk>/',pizza_Detail.as_view()),
 ]
+urlpatterns = format_suffix_patterns(urlpatterns)
