@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'jwtProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Gagan',
+        'NAME': 'JWTAPI',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost'
