@@ -6,11 +6,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.reverse import reverse
 from rest_framework.permissions import IsAdminUser
-from rest_framework.authentication import SessionAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from .permissions import IsAdminOrTeacherUser, IsStudentUser
 
 class StudentTeacherList(APIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminUser]
     def get(self, request, format = None):
         stTech = User.objects.exclude(is_staff=True)
@@ -18,7 +18,7 @@ class StudentTeacherList(APIView):
         return Response(stTech_serializer.data)       
 
 class Student(APIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminOrTeacherUser]
     def get(self, request, format = None):
         st = User.objects.filter(Occupation__iexact="Student")
@@ -33,7 +33,7 @@ class Student(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Student_CRUD(APIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminOrTeacherUser]
     def get_object(self, pk):
             try:
@@ -60,7 +60,7 @@ class Student_CRUD(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class studentList(APIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsStudentUser]
     def get(self, request, format = None):
         st = User.objects.filter(id=request.user.id)
@@ -68,7 +68,7 @@ class studentList(APIView):
         return Response(st_serializer.data)
 
 class Teacher(APIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminUser]
     def get(self, request, format = None):
         tech = User.objects.filter(Occupation__iexact="Teacher")
@@ -83,7 +83,7 @@ class Teacher(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Teacher_CRUD(APIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminUser]
 
     def get_object(self, pk):
