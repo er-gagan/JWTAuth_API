@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.reverse import reverse
 from rest_framework.permissions import IsAdminUser
 from rest_framework.authentication import SessionAuthentication
-from .permissions import IsAdminOrTeacherUser
+from .permissions import IsAdminOrTeacherUser, IsStudentUser
 
 class StudentTeacherList(APIView):
     authentication_classes = [SessionAuthentication]
@@ -60,8 +60,10 @@ class Student_CRUD(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class studentList(APIView):
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsStudentUser]
     def get(self, request, format = None):
-        st = User.objects.filter(Occupation__iexact="Student")
+        st = User.objects.filter(id=request.user.id)
         st_serializer = StudentSerializer(st, many=True)
         return Response(st_serializer.data)
 
