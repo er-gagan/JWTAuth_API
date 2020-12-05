@@ -1,4 +1,3 @@
-
 from .models import User
 from .serializers import StudentSerializer, TeacherSerializer
 from rest_framework import status
@@ -7,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.reverse import reverse
 from rest_framework.permissions import IsAdminUser
 from rest_framework_simplejwt.authentication import JWTAuthentication
+# from rest_framework.authentication import SessionAuthentication
 from .permissions import IsAdminOrTeacherUser, IsStudentUser
 
 class StudentTeacherList(APIView):
@@ -117,7 +117,7 @@ class ApiRoot(APIView):
             "List Teachers and Student's Record": reverse('all',request=request, format=format),
             "Create/Read/Update/Delete Teacher's Records": reverse('Teacher',request=request, format=format),
             "Create/Read/Update/Delete Student's Records": reverse('Student',request=request, format=format),
-            "List Student's Records": reverse('studentList',request=request, format=format),
+            "Student Own Records": reverse('studentList',request=request, format=format),
         })
 
 # superuser and password = jwt

@@ -5,9 +5,9 @@ class IsStudentUser(IsAdminUser):
         if request.user.is_staff == False and request.user.is_superuser == False:
             return True
 
-class IsTeacherUser(IsAdminUser):
-    def has_permission(self, request, view):
-        return bool(request.user and request.user.is_superuser)
+# class IsTeacherUser(IsAdminUser):
+#     def has_permission(self, request, view):
+#         return bool(request.user and request.user.is_superuser)
 
 class IsAdminOrTeacherUser(IsAdminUser):
     def has_permission(self, request, view):
