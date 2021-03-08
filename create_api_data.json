@@ -1,0 +1,22 @@
+// for teacher
+{
+    "first_name":"sonu",
+    "last_name":"kumar",
+    "email":"sonu@gmail.com",
+    "username": "sonu",
+    "password": "sonu",
+    "Phone": "656556888",
+    "Occupation": "Teacher",
+    "is_superuser": "true"
+}
+
+// for student
+{
+    "first_name":"shukla",
+    "last_name":"kumar",
+    "email":"shukla@gmail.com",
+    "username": "shukla",
+    "password": "shukla",
+    "Phone": "876765",
+    "Occupation": "Student"
+}

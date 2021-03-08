@@ -1,0 +1,6 @@
+from django.contrib import admin
+from .models import User
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['username', 'id', 'Occupation','is_staff', 'is_superuser', 'is_active']
