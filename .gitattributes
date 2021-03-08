@@ -1,4 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-/Scripts/
-/Lib/
+/JWTAuth_API/Scripts/
+/JWTAuth_API/Lib/
